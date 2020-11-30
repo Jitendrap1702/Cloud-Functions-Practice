@@ -17,6 +17,8 @@ exports.addMessage = functions.https.onRequest(async (req, res) => {
   });
 
 
+// new added document will change in uppercase (if add in messages)
+
   // Listens for new messages added to /messages/:documentId/original and creates an
 // uppercase version of the message to /messages/:documentId/uppercase
 exports.makeUppercase = functions.firestore.document('/messages/{documentId}')
@@ -35,6 +37,8 @@ exports.makeUppercase = functions.firestore.document('/messages/{documentId}')
   return snap.ref.set({uppercase}, {merge: true});
 });
 
+
+// used to send notification when a new document will added in hello
 exports.pushNotification = functions.firestore.document('/hello/{id}').onCreate((change, context) => {
         console.log('Push notification event triggered');
     
