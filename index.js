@@ -34,3 +34,18 @@ exports.makeUppercase = functions.firestore.document('/messages/{documentId}')
   // Setting an 'uppercase' field in Cloud Firestore document returns a Promise.
   return snap.ref.set({uppercase}, {merge: true});
 });
+
+exports.pushNotification = functions.firestore.document('/hello/{id}').onCreate((change, context) => {
+        console.log('Push notification event triggered');
+    
+          const value = change.data.original;
+
+        // Create a notification
+        const payload = {
+            notification: {
+                title: "Cloud Notify,
+                body: "To kaise he aap log!!",
+            }
+        };
+        return admin.messaging().sendToTopic("users", payload);
+    });
