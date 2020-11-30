@@ -43,7 +43,7 @@ exports.pushNotification = functions.firestore.document('/hello/{id}').onCreate(
         // Create a notification
         const payload = {
             notification: {
-                title: "Cloud Notify,
+                title: "Cloud Notify",
                 body: "To kaise he aap log!!",
             }
         };
